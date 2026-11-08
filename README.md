@@ -52,6 +52,8 @@ npx expo start --dev-client
 
 Open the Monty app on your phone and scan the QR code. Code changes reload live. You only need a new EAS build when native dependencies change.
 
+For a quick look in a desktop browser (layout only, with no microphone or other native features), run `npx expo start --web`.
+
 If Android Studio is installed, `npx expo run:android` with the phone plugged in does the same thing locally.
 
 ## Deploying the server to Vercel
@@ -76,7 +78,7 @@ The API key only lives on Vercel and never in the app. Transcripts are not logge
 ## Build plan
 
 1. **Done:** project setup, theme, navigation, local database, Monty plant, plus the server endpoint and the AI-output validation, with tests
-2. Onboarding screens and settings storage
+2. **Done:** onboarding (welcome, microphone, bubble, time per day, best time, calendar, reminders), settings saved on the phone, and a Settings screen that reuses the same steps
 3. In-app tap to talk, chunking, on-device speech to text, then the floating-bubble feasibility spike
 4. Connect the app to the server, Review screen
 5. Planner (a pure function, tested) and the main screen

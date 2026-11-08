@@ -1,5 +1,6 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { TabIcon, type TabIconName } from '@/components/TabIcon';
+import { useSettings } from '@/state/SettingsContext';
 import { colors, fonts } from '@/theme/tokens';
 
 const TABS: { name: string; title: string; icon: TabIconName }[] = [
@@ -10,6 +11,9 @@ const TABS: { name: string; title: string; icon: TabIconName }[] = [
 ];
 
 export default function TabsLayout() {
+  const { settings } = useSettings();
+  if (!settings.onboarded) return <Redirect href="/onboarding" />;
+
   return (
     <Tabs
       screenOptions={{

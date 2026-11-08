@@ -34,9 +34,9 @@ export async function loadSettings(db: SQLiteDatabase): Promise<Settings> {
 export async function saveSettings(db: SQLiteDatabase, patch: Partial<Settings>): Promise<void> {
   const entries = Object.entries(patch).filter(([, v]) => v !== undefined);
   if (entries.length === 0) return;
-  await db.withExclusiveTransactionAsync(async (txn) => {
+  await db.withTransactionAsync(async () => {
     for (const [key, value] of entries) {
-      await txn.runAsync(
+      await db.runAsync(
         'INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value',
         key,
         JSON.stringify(value),

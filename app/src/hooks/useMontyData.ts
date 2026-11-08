@@ -1,8 +1,9 @@
 import { useFocusEffect } from 'expo-router';
 import { useSQLiteContext } from 'expo-sqlite';
 import { useCallback, useState } from 'react';
-import { DEFAULT_SETTINGS, NEW_COMPANION, type Companion, type Settings, type Task } from '@monty/core';
-import { listOpenTasks, loadCompanion, loadSettings, saveCompanion } from '@/db/repos';
+import { NEW_COMPANION, type Companion, type Settings, type Task } from '@monty/core';
+import { listOpenTasks, loadCompanion, saveCompanion } from '@/db/repos';
+import { useSettings } from '@/state/SettingsContext';
 
 interface MontyData {
   settings: Settings;
@@ -16,14 +17,13 @@ interface MontyData {
 /** Loads the basics for a screen and refreshes them whenever it comes into focus. */
 export function useMontyData(): MontyData {
   const db = useSQLiteContext();
-  const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+  const { settings } = useSettings();
   const [companion, setCompanionState] = useState<Companion>(NEW_COMPANION);
   const [openTasks, setOpenTasks] = useState<Task[]>([]);
   const [loaded, setLoaded] = useState(false);
 
   const reload = useCallback(async () => {
-    const [s, c, t] = await Promise.all([loadSettings(db), loadCompanion(db), listOpenTasks(db)]);
-    setSettings(s);
+    const [c, t] = await Promise.all([loadCompanion(db), listOpenTasks(db)]);
     setCompanionState(c);
     setOpenTasks(t);
     setLoaded(true);

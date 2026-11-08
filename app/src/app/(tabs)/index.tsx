@@ -1,5 +1,7 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import Svg, { Circle, Path } from 'react-native-svg';
 import { GROWTH_STAGES, growthProgress, isResting, recordGrowth, toISODate } from '@monty/core';
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
@@ -8,7 +10,7 @@ import { Monty } from '@/components/Monty';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Screen } from '@/components/Screen';
 import { useMontyData } from '@/hooks/useMontyData';
-import { spacing } from '@/theme/tokens';
+import { colors, spacing, touchTarget } from '@/theme/tokens';
 
 function greeting(hour: number): string {
   if (hour < 12) return 'Good morning';
@@ -37,6 +39,7 @@ export default function HomeScreen() {
     <Screen
       title={greeting(new Date().getHours())}
       subtitle={shownResting ? 'Monty is napping. Do one small thing to wake it.' : 'Monty is ready to listen.'}
+      headerRight={<SettingsButton />}
     >
       <View style={styles.hero}>
         <Monty level={shownLevel} resting={shownResting} size={150} />
@@ -112,7 +115,25 @@ export default function HomeScreen() {
   );
 }
 
+function SettingsButton() {
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel="Settings"
+      onPress={() => router.push('/settings')}
+      style={({ pressed }) => [styles.settings, pressed && { opacity: 0.7 }]}
+    >
+      <Svg width={26} height={26} viewBox="0 0 24 24" accessibilityElementsHidden importantForAccessibility="no">
+        <Path d="M4 7h16M4 17h16" stroke={colors.ink} strokeWidth={2} strokeLinecap="round" />
+        <Circle cx={9} cy={7} r={2.5} fill={colors.background} stroke={colors.ink} strokeWidth={2} />
+        <Circle cx={15} cy={17} r={2.5} fill={colors.background} stroke={colors.ink} strokeWidth={2} />
+      </Svg>
+    </Pressable>
+  );
+}
+
 const styles = StyleSheet.create({
+  settings: { width: touchTarget, height: touchTarget, alignItems: 'center', justifyContent: 'center' },
   hero: { alignItems: 'center', gap: spacing.md, paddingVertical: spacing.sm },
   growth: { width: 220, gap: 6 },
   sectionLabel: { marginTop: spacing.sm },
