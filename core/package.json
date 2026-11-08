@@ -1,0 +1,21 @@
+{
+  "name": "@monty/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pure TypeScript logic shared by the Monty app and server: data types, AI-output validation, planner, habits, companion.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "react-native": "src/index.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.0"
+  }
+}

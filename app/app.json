@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Monty",
+    "slug": "monty",
+    "scheme": "monty",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#EEF3F0",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.montyplanner.app"
+    },
+    "android": {
+      "package": "com.montyplanner.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#EEF3F0",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": []
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 160,
+          "backgroundColor": "#EEF3F0"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "structureUrl": "",
+      "appToken": ""
+    }
+  }
+}

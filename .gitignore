@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.expo/
+.vercel/
+*.log
+.env
+.env.*
+!.env.example
+# Expo native folders are generated (Continuous Native Generation)
+app/android/
+app/ios/
+*.apk
+*.aab
+.DS_Store

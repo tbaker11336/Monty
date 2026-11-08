@@ -1,0 +1,20 @@
+{
+  "name": "@monty/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Monty's single serverless endpoint (Vercel): transcript text in, validated structured items out.",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "@monty/core": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.0"
+  }
+}

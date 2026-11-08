@@ -1,0 +1,14 @@
+{
+  "name": "monty",
+  "private": true,
+  "workspaces": [
+    "app",
+    "core",
+    "server"
+  ],
+  "scripts": {
+    "test": "npm run test -w core && npm run test -w server",
+    "typecheck": "npm run typecheck -w core && npm run typecheck -w server && npm run typecheck -w app",
+    "build:core": "npm run build -w core"
+  }
+}
